@@ -1,3 +1,9 @@
+const dotenv = require("dotenv")
+
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config()
+}
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Starter Photo Book`,
@@ -10,7 +16,7 @@ module.exports = {
       options: {
         isTSX: true, // defaults to false
         //jsxPragma: `jsx`, // defaults to "React" ??
-        allExtensions: true
+        allExtensions: true,
       },
     },
     {
@@ -39,6 +45,13 @@ module.exports = {
         theme_color: `#372428`,
         display: `minimal-ui`,
         icon: `static/favicon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `wnpfyuuoxo1d`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
